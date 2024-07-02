@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { getNotes } from "@/utils/actions/notes";
+import insertDemoData from "@/utils/insertDemoData";
 
 // Create the context
 const NotesContext = createContext();
@@ -12,6 +13,7 @@ export const NotesProvider = ({ children }) => {
   const fetchNotes = async (folderId) => {
     if (!notesData[folderId]) {
       try {
+        await insertDemoData()
         const response = await getNotes(folderId);
 
         if (response.ok) {
