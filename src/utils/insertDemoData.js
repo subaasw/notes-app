@@ -21,22 +21,23 @@ export default async function insertDemoData() {
 
   const userId = session?.user?.id;
 
-  if (!session?.access_token) return;
-
   const { data: currentUser } = await userQuery
     .select()
     .eq("google_id", userId)
     .maybeSingle();
 
-  if (currentUser?.id) return;
+  if (currentUser?.google_id) return;
 
   const { data: newUser } = await userQuery.insert({
     google_id: userId,
     user_name: session?.user?.user_metadata?.name,
     email: session?.user?.email,
-  });
+  }).maybeSingle();
 
-  const { data } = await folderQueryInstance.select("folder_id");
+  const { data } = await folderQueryInstance.select({
+    params: "folder_id",
+    userId,
+  });
 
   // if already has data then dont add
   if (Array.isArray(data) && data.length) return;

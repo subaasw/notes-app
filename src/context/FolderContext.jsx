@@ -26,7 +26,7 @@ export const FolderProvider = ({ children }) => {
         if (!response.ok) {
           console.warn("Warn: Network response was not ok");
         }
-        const { data } = await response.json();
+        const data = await response.json();
 
         // Sort folders by folder_id
         if (data) {

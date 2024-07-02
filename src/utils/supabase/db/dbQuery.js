@@ -13,7 +13,7 @@ export class TodoFolders {
     this.setUser();
   }
 
-  async getUser() {
+  getUser() {
     return this.user;
   }
 
@@ -22,9 +22,13 @@ export class TodoFolders {
     this.user = data.session.user;
   }
 
-  async select({ params = "", where = { name: "", value: "" } }) {
+  async select({ params = "", where = { name: "", value: "" }, userId = "" }) {
     if (where.name) {
       return await this.query.select(params).eq(where.name, where.value);
+    }
+
+    if (userId) {
+      return await this.query.select(params).eq("user_id", userId);
     }
 
     return await this.query.select(params);

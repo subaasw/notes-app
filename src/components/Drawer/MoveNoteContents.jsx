@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import SmoothButton from "../SmoothButton/SmoothButton";
+import { getFolders } from "@/utils/actions/folders";
 import { useOverlay } from "@/context/OverlayContext";
+import { useAllNotes } from "@/context/AllNotesContext";
+import { addNote, removeNote } from "@/utils/actions/notes";
+
 import Drawer from "./Drawer";
+import SmoothButton from "../SmoothButton/SmoothButton";
 import NoteOptionsContents from "./NoteOptionsContents";
 import SmoothButtonBlack from "../SmoothButton/SmoothButtonBlack";
 import ChooseFolderOption from "./ChooseFolderOption";
-import { useAllNotes } from "@/context/AllNotesContext";
-import { getFolders } from "@/utils/actions/folders";
-import { addNote, removeNote } from "@/utils/actions/notes";
-import LoadingScreen from "@/components/Navigation/LoadingScreen";
 
 export default function MoveNoteContents({
   noteId,
@@ -63,7 +63,7 @@ export default function MoveNoteContents({
           throw new Error("Network response was not ok");
         }
         const folderData = await response.json();
-        setFolders(folderData?.data);
+        setFolders(folderData);
         setFoldersFetched(true);
       } catch (error) {
         console.error("Failed to fetch folders:", error.message);
