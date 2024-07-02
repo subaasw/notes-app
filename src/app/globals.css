@@ -1,0 +1,128 @@
+@import url("https://use.typekit.net/lrm0kaj.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --Brand-Black: 17, 26, 73;
+  --Brand-White: 255, 255, 255;
+  --Brand-Red: 212, 31, 74;
+  --White: 255, 255, 255;
+  --Unfinished-Grey: 198, 200, 231;
+  --font-header: "degular-variable", sans-serif;
+  --font-body: "cofo-sans-variable", sans-serif;
+}
+
+/* New dark theme styles */
+[data-theme="dark"] {
+  --Brand-Black: 255, 255, 255; /* White color */
+  --Brand-White: 0, 7, 41; /* Black color */
+  --Brand-Red: 255, 109, 109;
+}
+
+body {
+  color: rgb(var(--Brand-Black));
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-variation-settings: "SLNT" 0;
+  font-style: normal;
+  overflow: auto;
+  margin: 0;
+  /* max-height: 100vh; */
+}
+
+.folder-svg > svg {
+  width: 100%;
+  z-index: -1;
+  max-height: 9.125rem;
+}
+
+.folder-svg {
+  display: flex;
+  width: 100%;
+}
+
+.folder-back > svg {
+  max-height: 11.125rem;
+}
+
+/* Existing styles */
+.brand-button-transition > *,
+.brand-button-transition .note-card-class {
+  transition-property: transform, opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.06, 0.9, 0.15, 1);
+  transform: translateY(0);
+}
+
+.brand-button-transition.lesser-transform:hover > * {
+  transform: translateY(0rem);
+}
+
+.brand-button-transition.lesser-transform:active > * {
+  transform: translateY(0.2rem);
+}
+
+.opacity-button-transition {
+  opacity: 1;
+}
+.opacity-button-transition:active {
+  opacity: 0.25;
+}
+
+.brand-button-transition .note-card-class:nth-child(2) {
+  transition-delay: 0.05s;
+}
+.brand-button-transition .note-card-class:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+.brand-button-transition:hover {
+  cursor: pointer;
+}
+
+.brand-button-transition:hover > * {
+  transform: translateY(-0.5rem);
+}
+
+.brand-button-transition:hover .note-card-class {
+  transform: translateY(-1.25rem);
+}
+
+.brand-button-transition:active > * {
+  transform: translateY(0.25rem);
+}
+
+/* Media query for Tailwind CSS small breakpoint (max-width: 639px) */
+@media (max-width: 639px) {
+  .brand-button-transition .note-card-class {
+    transform: translateY(-0.75rem);
+  }
+
+  .brand-button-transition:hover > * {
+    transform: translateY(0rem);
+  }
+
+  .brand-button-transition:active > * {
+    transform: translateY(0.5rem);
+  }
+
+  .brand-button-transition:hover .note-card-class {
+    transform: translateY(-0.75rem);
+  }
+
+  .no-drag-mobile * {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+.no-drag * {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
