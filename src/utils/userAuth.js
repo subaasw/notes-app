@@ -1,4 +1,3 @@
-import insertDemoData from "./insertDemoData";
 import { createClient } from "./supabase/client";
 
 const supabase = createClient();
